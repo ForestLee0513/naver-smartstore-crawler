@@ -7,7 +7,9 @@ def get_product_info(url):
         title = crawled_html.select_one("#content > div > div._2-I30XS1lA > div._2QCa6wHHPy > fieldset > div._3k440DUKzy > div._1eddO7u4UC > h3").get_text()
         price = crawled_html.select_one("#content > div > div._2-I30XS1lA > div._2QCa6wHHPy > fieldset > div._3k440DUKzy > div.WrkQhIlUY0 > div > strong > span._1LY7DqCnwR").get_text()
         price_currency = crawled_html.select_one("#content > div > div._2-I30XS1lA > div._2QCa6wHHPy > fieldset > div._3k440DUKzy > div.WrkQhIlUY0 > div > strong > span.won").get_text()
-        soldout_element = crawled_html.select_one("#content > div > div._2-I30XS1lA > div._2QCa6wHHPy > fieldset > div._2BQ-WF2QUb").get_text()
+        soldout_element = crawled_html.select_one("#content > div > div._2-I30XS1lA > div._2QCa6wHHPy > fieldset > div._2BQ-WF2QUb")
+
+        print(soldout_element)
         
         return {
             "url": url,
