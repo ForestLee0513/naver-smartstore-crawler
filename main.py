@@ -2,8 +2,6 @@ from flask import Flask, request, jsonify
 from src import get_product_info
 app = Flask(__name__)
 
-url = "https://smartstore.naver.com/geonlab/products/9031635718"
-
 @app.route("/get-products")
 def get_products():
     data = request.json
