@@ -8,15 +8,13 @@ def get_product_info(url):
         price = crawled_html.select_one("#content > div > div._2-I30XS1lA > div._2QCa6wHHPy > fieldset > div._3k440DUKzy > div.WrkQhIlUY0 > div > strong > span._1LY7DqCnwR").get_text()
         price_currency = crawled_html.select_one("#content > div > div._2-I30XS1lA > div._2QCa6wHHPy > fieldset > div._3k440DUKzy > div.WrkQhIlUY0 > div > strong > span.won").get_text()
         soldout_element = crawled_html.select_one("#content > div > div._2-I30XS1lA > div._2QCa6wHHPy > fieldset > div._2BQ-WF2QUb")
-
-        print(soldout_element)
         
         return {
             "url": url,
             "title": title,
             "price": price,
             "priceCurrency": price_currency,
-            "isSoldout": bool(soldout_element),
+            "soldout": bool(soldout_element),
         }
     except:
         return "Cannot get product."
