@@ -18,6 +18,15 @@ def get_products():
         "productInfo": product_info_list
     })
 
+@app.route("/get-product")
+def get_product():
+    data = request.json
+    product_info = get_product_info.get_product_info(data['url'])
+    
+    return jsonify({
+        "productInfo": product_info 
+    })
+
 @app.route('/')
 def main():
     return "NAVER Smartstore crawler is running.."
