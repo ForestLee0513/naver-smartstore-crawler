@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from src import get_product_info
 app = Flask(__name__)
+CORS(app)
 
-@app.route("/get-products")
+@app.route("/get-products", methods=["POST"])
 def get_products():
     data = request.json
     product_info_list = []
@@ -18,13 +20,14 @@ def get_products():
         "productInfo": product_info_list
     })
 
-@app.route("/get-product")
+@app.route("/get-product", methods=["POST"])
 def get_product():
     data = request.json
     product_info = get_product_info.get_product_info(data['url'])
+ 
     
     return jsonify({
-        "productInfo": product_info 
+        "productInfo": product_info
     })
 
 @app.route('/')
