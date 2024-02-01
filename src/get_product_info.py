@@ -1,4 +1,5 @@
 from src import crawler
+from flask import Response
 
 def get_product_info(url):
     crawled_html = crawler.crawler(url)
@@ -19,4 +20,4 @@ def get_product_info(url):
             "imageUrl": image,
         }
     except:
-        return "Cannot get product."
+        return Response("Cannot get product.", status=400)
