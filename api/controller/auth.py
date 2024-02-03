@@ -1,25 +1,16 @@
 from flask import Blueprint, request
-import os
-import requests
+
+from ..service.auth.kakao_auth import get_kakao_token, get_kakao_user_info
 
 auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.route('/kakao', methods=["POST"])
-def sign_up():
-    KAKAO_REST_API_KEY=os.environ.get('KAKAO_REST_API_KEY')
+def kakao_login():
     data = request.json
     KAKAO_REDIRECT_URI = data['redirect_uri']
     KAKAO_AUTH_CODE = data['code']
 
-    paramDict = {
-        "grant_type": "authorization_code",
-        "client_id": KAKAO_REST_API_KEY,
-        "redirect_uri": KAKAO_REDIRECT_URI,
-        "code": KAKAO_AUTH_CODE
-    }
+    kakao_token_response = get_kakao_token(KAKAO_REDIRECT_URI, KAKAO_AUTH_CODE)
+    kakao_user_info_response = get_kakao_user_info(kakao_token_response['access_token'])
 
-    response = requests.post('https://kauth.kakao.com/oauth/token', params=paramDict)
-
-    print(response.json())
-
-    return "kakao signin/singup view."
+    return kakao_user_info_response
