@@ -19,3 +19,6 @@ def get_kakao_user_info(token):
     }
 
     return requests.post('https://kapi.kakao.com/v2/user/me', headers=get_user_info_request_header_dict).json()
+
+def kakao_sign_up(user_info_dict):
+    return ""
