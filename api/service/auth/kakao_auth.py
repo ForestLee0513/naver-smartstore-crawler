@@ -1,7 +1,7 @@
 import os
 import requests
 
-def get_kakao_token(redirect_uri, auth_code):
+def get_kakao_token(redirect_uri: str, auth_code: str):
     KAKAO_REST_API_KEY=os.environ.get('KAKAO_REST_API_KEY')
     get_token_request_param_dict = {
         "grant_type": "authorization_code",
@@ -12,7 +12,7 @@ def get_kakao_token(redirect_uri, auth_code):
 
     return requests.post('https://kauth.kakao.com/oauth/token', params=get_token_request_param_dict).json()
 
-def get_kakao_user_info(token):
+def get_kakao_user_info(token: str):
     get_user_info_request_header_dict = {
         "Authorization": f'Bearer {token}',
         "Content-type": "Content-type: application/x-www-form-urlencoded;charset=utf-8"
